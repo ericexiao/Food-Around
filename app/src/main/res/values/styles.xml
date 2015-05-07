@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="PastelTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/PastelActionBar</item>
+        <item name="actionBarStyle">@style/PastelActionBar</item>
+    </style>
+
+    <style name="PastelActionBar"
+        parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/pastelOrange</item>
+        <item name="background">@color/pastelOrange</item>
+    </style>
+</resources>
