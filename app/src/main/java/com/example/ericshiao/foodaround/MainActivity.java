@@ -20,6 +20,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -175,9 +176,9 @@ public class MainActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> adapterView, View item, int position, long rowId) {
                 Intent i = new Intent(MainActivity.this, RestaurantActivity.class);
                 Restaurant selected = (Restaurant) list.getItemAtPosition(position);
-                i.putExtra("selected", selected.getName());
-                //Toast toast = Toast.makeText(MainActivity.this, selected.name, Toast.LENGTH_SHORT);
-                //toast.show();
+                i.putExtra("selected", selected.getRawName());
+                Toast toast = Toast.makeText(MainActivity.this, selected.getRawName(), Toast.LENGTH_SHORT);
+                toast.show();
 
                 startActivity(i);
             }
