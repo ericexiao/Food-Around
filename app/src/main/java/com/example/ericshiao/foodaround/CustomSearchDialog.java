@@ -1,3 +1,5 @@
+package com.example.ericshiao.foodaround;
+
 import android.app.Activity;
 import android.app.Dialog;
 
