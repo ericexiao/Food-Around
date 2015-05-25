@@ -34,17 +34,6 @@ public class LocationFragment extends Fragment {
         ExpandableMenuAdapter restaurantAdapter = new ExpandableMenuAdapter(getActivity(), courseTypes, menuChildren);
         list.setAdapter(restaurantAdapter);
         list.setGroupIndicator(null);
-
-        /*list.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-            int previousItem = -1;
-            @Override
-            public void onGroupExpand(int groupPosition) {
-                if (groupPosition != previousItem) {
-                    list.collapseGroup(previousItem);
-                    previousItem = groupPosition;
-                }
-            }
-        });*/
         return rootView;
     }
 

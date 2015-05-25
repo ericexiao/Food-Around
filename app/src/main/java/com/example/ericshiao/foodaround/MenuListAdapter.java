@@ -11,31 +11,24 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by Eric on 1/2/2015.
+ * Created by Eric on 5/24/2015.
  */
-public class RestaurantMainAdapter extends ArrayAdapter<Restaurant> {
+public class MenuListAdapter extends ArrayAdapter<Food> {
 
-    public RestaurantMainAdapter(Context context, ArrayList<Restaurant> list) {
+    public MenuListAdapter(Context context, ArrayList<Food> list) {
         super(context, 0, list);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        Restaurant r = getItem(position);
-
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_restaurant, parent, false);
         }
-        TextView name = (TextView) convertView.findViewById(R.id.name);
-        TextView address = (TextView) convertView.findViewById(R.id.addressDetail);
-        TextView genLocation = (TextView) convertView.findViewById(R.id.genLocation);
-        ImageView open = (ImageView) convertView.findViewById(R.id.open);
-        ImageView picture = (ImageView) convertView.findViewById(R.id.picture);
 
-        name.setText(r.name);
-        address.setText(r.address);
-        genLocation.setText(" - " + r.genLocation);
+        TextView name = (TextView) convertView.findViewById(R.id.name);
+
+        Food f= getItem(position);
+        name.setText(f.name);
 
         return convertView;
     }
