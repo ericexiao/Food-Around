@@ -119,7 +119,7 @@ public class SearchActivity extends ActionBarActivity {
         list.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View item, int position, long rowId) {
-                Intent i = new Intent(SearchActivity.this, RestaurantActivity.class);
+                Intent i = new Intent(SearchActivity.this, MenuActivity.class);
                 Restaurant selected = (Restaurant) list.getItemAtPosition(position);
                 i.putExtra("selected", selected.getName());
                 //Toast toast = Toast.makeText(MainActivity.this, selected.name, Toast.LENGTH_SHORT);

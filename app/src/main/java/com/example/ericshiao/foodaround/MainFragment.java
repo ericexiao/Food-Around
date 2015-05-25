@@ -63,7 +63,7 @@ public class MainFragment extends Fragment {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View item, int position, long rowId) {
-                Intent i = new Intent(getActivity(), RestaurantActivity.class);
+                Intent i = new Intent(getActivity(), MenuActivity.class);
                 Restaurant selected = (Restaurant) list.getItemAtPosition(position);
                 i.putExtra("selected", selected.getRawName());
 

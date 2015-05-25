@@ -44,8 +44,8 @@ public class ExpandableMenuAdapter extends BaseExpandableListAdapter {
         }
         ExpandableListView list = (ExpandableListView) parent;
         list.expandGroup(groupPosition);
-        TextView courseType = (TextView) convertView.findViewById(R.id.course_type);
-        courseType.setText(course);
+        //TextView courseType = (TextView) convertView.findViewById(R.id.course_type);
+        //courseType.setText(course);
         return convertView;
     }
 

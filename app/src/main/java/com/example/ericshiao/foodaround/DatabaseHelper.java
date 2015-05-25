@@ -89,7 +89,8 @@ public class DatabaseHelper extends SQLiteAssetHelper {
     }
 
     //consider doing multiple queries for different course types? allows to sort by different things more easily
-    protected ArrayList<Food> getMenu(String restaurant, int sortingOption) {
+    protected ArrayList<Food> queryMenu(String restaurant, int sortingOption) {
+        //database set up
         SQLiteDatabase db = getReadableDatabase();
         String restaurantDetails = restaurant + "Details";
         restaurantDetails.replaceAll("\\s+","");

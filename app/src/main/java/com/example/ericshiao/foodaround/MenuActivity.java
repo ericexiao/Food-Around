@@ -20,18 +20,20 @@ import java.util.List;
  */
 
 /*
-Purpose of class is to initialize the RestuarantActivity screen. The produces the information of the
+Purpose of class is to initialize the MenuActivity screen. The produces the information of the
 restuarant (such as location, opening and closing times, etc. ) as well as the menu and menu
-information (name, price, description, etc).
+information (name, price, description, etc) through the use of fragments
 The activity uses a navPager and an expandable list for navigation.
  */
-public class RestaurantActivity extends ActionBarActivity {
+public class MenuActivity extends ActionBarActivity {
 
+    //Variables related to the navigation strip
     List<Fragment> fragManager;
     ViewPager rNavPager;
     rNavAdapter rAdapter;
-    int selectedItem;
-    //DatabaseHelper dbHelper;
+
+    //Data variables
+    int sortingOption;
     String restaurantName;
 
     @Override
@@ -39,17 +41,23 @@ public class RestaurantActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
 
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        /*
+         *Gets which restaurant to show based on what was clicked in the MainActivity and sets them
+         *up in the data variables
+         */
         Intent info = getIntent();
         restaurantName = info.getStringExtra("selected");
-        selectedItem = info.getIntExtra("sortingOption", 0);
-        setTitle(restaurantName);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        sortingOption = info.getIntExtra("sortingOption", 0);
 
-        //dbHelper = new DatabaseHelper(this);
-        MenuSectionFragment menuFragment = new MenuSectionFragment();
+        //action bar stuff
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        setTitle(restaurantName);
+
+        //Fragment set up
+        MenuFragment menuFragment = new MenuFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("sortingOption", selectedItem);
+        bundle.putInt("sortingOption", sortingOption);
         bundle.putString("restaurant", restaurantName);
         menuFragment.setArguments(bundle);
         fragManager = new ArrayList<>();
@@ -57,13 +65,11 @@ public class RestaurantActivity extends ActionBarActivity {
         fragManager.add(menuFragment);
         //fragManager.add(new InputSectionFragment());
 
-
+        //sets up the navPager
         rNavPager = (ViewPager) findViewById(R.id.rPager);
         rAdapter = new rNavAdapter(getSupportFragmentManager(), fragManager);
         rNavPager.setAdapter(rAdapter);
         rNavPager.setCurrentItem(1);
-
-
     }
 
     @Override
@@ -97,7 +103,7 @@ public class RestaurantActivity extends ActionBarActivity {
         final ActionMenuItemView menuSort = (ActionMenuItemView) findViewById(R.id.action_menu_sort);
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent intent = new Intent(RestaurantActivity.this, SettingsActivity.class);
+            Intent intent = new Intent(MenuActivity.this, SettingsActivity.class);
             startActivity(intent);
             return true;
         }
@@ -114,39 +120,39 @@ public class RestaurantActivity extends ActionBarActivity {
                             dialog.dismiss();
                         }
                     });
-            final int selected = selectedItem;
+            final int selected = sortingOption;
             menuSortBuilder.setSingleChoiceItems(sortOptions, selected, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     switch (which) {
                         case 0:
                             menuSort.setIcon(getResources().getDrawable(R.drawable.abc_sort));
-                            selectedItem = which;
-                            updateSorting(selectedItem);
+                            sortingOption = which;
+                            updateSorting(sortingOption);
                             dialog.dismiss();
                             break;
                         case 1:
                             menuSort.setIcon(getResources().getDrawable(R.drawable.course_type_sort));
-                            selectedItem = which;
-                            updateSorting(selectedItem);
+                            sortingOption = which;
+                            updateSorting(sortingOption);
                             dialog.dismiss();
                             break;
                         case 2:
                             menuSort.setIcon(getResources().getDrawable(R.drawable.eaten_sort));
-                            selectedItem = which;
-                            updateSorting(selectedItem);
+                            sortingOption = which;
+                            updateSorting(sortingOption);
                             dialog.dismiss();
                             break;
                         case 3:
                             menuSort.setIcon(getResources().getDrawable(R.drawable.price_sort));
-                            selectedItem = which;
-                            updateSorting(selectedItem);
+                            sortingOption = which;
+                            updateSorting(sortingOption);
                             dialog.dismiss();
                             break;
                         case 4:
                             menuSort.setIcon(getResources().getDrawable(R.drawable.speciality_sort));
-                            selectedItem = which;
-                            updateSorting(selectedItem);
+                            sortingOption = which;
+                            updateSorting(sortingOption);
                             dialog.dismiss();
                             break;
                         default:
@@ -163,7 +169,7 @@ public class RestaurantActivity extends ActionBarActivity {
     }
 
     public void updateSorting(int sortingOption) {
-        Intent refresh = new Intent(this, RestaurantActivity.class);
+        Intent refresh = new Intent(this, MenuActivity.class);
         refresh.putExtra("sortingOption", sortingOption);
         finish();
         startActivity(refresh);
