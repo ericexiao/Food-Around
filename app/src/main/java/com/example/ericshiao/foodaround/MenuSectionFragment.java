@@ -55,10 +55,6 @@ public class MenuSectionFragment extends Fragment {
         return m;
     }
 
-    private String determineTable() {
-        String table = restaurantName + "Detail";
-        return table;
-    }
     /*private Map<String, List<Food>> populateMenu(List<String> courses) {
         Map<String, List<Food>> m = new HashMap<String, List<Food>>();
 

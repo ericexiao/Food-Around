@@ -95,4 +95,10 @@ public class Restaurant {
     public void setImage(Image image) {
         this.image = image;
     }
+
+    protected String getRawName() {
+        String rawName = name.toLowerCase();
+        rawName.replaceAll("\\s+","");
+        return rawName;
+    }
 }
