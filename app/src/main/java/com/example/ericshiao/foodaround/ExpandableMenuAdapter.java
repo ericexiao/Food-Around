@@ -4,17 +4,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,7 +55,7 @@ public class ExpandableMenuAdapter extends BaseExpandableListAdapter {
         //final View convertViewDummy = convertView;
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.list_menu_children, null);
+            convertView = inflater.inflate(R.layout.expandable_list_menu_children, null);
         }
         TextView foodName = (TextView) convertView.findViewById(R.id.foodName);
         TextView foodDetails = (TextView) convertView.findViewById(R.id.foodDetail);

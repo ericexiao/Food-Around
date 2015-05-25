@@ -5,17 +5,71 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:id="@+id/type_icon"
-        android:contentDescription="Course Type Icon"/>
+        android:id="@+id/speciality"
+        android:layout_toStartOf="@+id/foodName"
+        android:contentDescription="Speciality Item"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:textColor="@color/black"
-        android:id="@+id/course_type"/>
+        android:id="@+id/foodName"
+        android:paddingStart="10dp"
+        android:textColor="#000000"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/foodDetail"
+        android:paddingStart="5dp"
+        android:layout_below="@+id/foodName"
+        android:textColor="#888888"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/foodName"
+        android:id="@+id/foodPrice"
+        android:paddingEnd="5dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/foodName"
+        android:text=""/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/foodEaten"
+        android:button="@drawable/eaten_check"
+        android:paddingTop="13dp"
+        android:paddingEnd="8dp"
+        android:layout_marginStart="12dp"
+        android:focusable="false"
+        android:layout_toStartOf="@+id/thumbsUp"/>
+
+
+    <CheckBox
+        android:button="@drawable/thumbs_up_checkbox"
+        android:id="@+id/thumbsUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="13dp"
+        android:paddingEnd="8dp"
+        android:focusable="false"
+        android:layout_toLeftOf="@+id/thumbsDown"/>
+
+    <CheckBox
+        android:button="@drawable/thumbs_down_checkbox"
+        android:id="@+id/thumbsDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="1dp"
+        android:paddingTop="13dp"
+        android:paddingEnd="10dp"
+        android:focusable="false"
+        android:layout_toStartOf="@+id/foodPrice"/>
 
 </RelativeLayout>

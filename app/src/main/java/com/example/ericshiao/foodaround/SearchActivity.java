@@ -1,11 +1,7 @@
 package com.example.ericshiao.foodaround;
 
-import android.app.AlertDialog;
-import android.app.ListActivity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.internal.view.menu.ActionMenuItemView;
@@ -16,11 +12,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -30,7 +23,7 @@ public class SearchActivity extends ActionBarActivity {
     ListView list;
     int selectedItem;
     //ArrayList<Restaurant> directory;
-    RestaurantMainAdapter adapter;
+    RestaurantListAdapter adapter;
     DatabaseHelper dbHelper;
 
     @Override
@@ -45,7 +38,7 @@ public class SearchActivity extends ActionBarActivity {
 
 
         list = (ListView) findViewById(R.id.restaurants);
-        adapter = new RestaurantMainAdapter(this, getDirectory());
+        adapter = new RestaurantListAdapter(this, getDirectory());
         list.setAdapter(adapter);
 
         onRestaurantClick();
@@ -115,50 +108,7 @@ public class SearchActivity extends ActionBarActivity {
 
         }
         if (id == R.id.action_restaurantSort) {
-            AlertDialog.Builder restaurantSortBuilder = new AlertDialog.Builder(this);
-            CharSequence[] sortOptions = {"Alphabetical", "Average Entree Price", "Distance", "Open"};
-            restaurantSortBuilder
-                    .setTitle("Sort Restaurants By...")
-                    .setCancelable(true)
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            final int selected = selectedItem;
-            restaurantSortBuilder.setSingleChoiceItems(sortOptions, selected, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    switch (which) {
-                        case 0:
-                            restaurantSort.setIcon(getResources().getDrawable(R.drawable.abc_sort));
-                            selectedItem = which;
-                            dialog.dismiss();
-                            break;
-                        case 1:
-                            restaurantSort.setIcon(getResources().getDrawable(R.drawable.price_sort));
-                            selectedItem = which;
-                            dialog.dismiss();
-                            break;
-                        case 2:
-                            restaurantSort.setIcon(getResources().getDrawable(R.drawable.distance));
-                            selectedItem = which;
-                            dialog.dismiss();
-                            break;
-                        case 3:
-                            restaurantSort.setIcon(getResources().getDrawable(R.drawable.speciality_sort));
-                            selectedItem = which;
-                            dialog.dismiss();
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            });
-            AlertDialog restaurantSortMenu = restaurantSortBuilder.create();
-            restaurantSortMenu.show();
-            adapter = new RestaurantMainAdapter(this, getDirectory());
+
             return true;
         }
 
