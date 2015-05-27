@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
     private final String KEY_GEN_LOCATION = "gen_location";
     private final String KEY_TIMES = "times";
     private final String KEY_COURSES = "courses";
-    private final String KEY_COURSE_TYPE = "course_type";
+    private final String KEY_COURSE_TYPE = "courseType";
     private final String KEY_RATING = "rating";
     private final String KEY_EATEN = "eaten";
     private final String KEY_DESCRIPTION = "description";
@@ -92,9 +92,6 @@ public class DatabaseHelper extends SQLiteAssetHelper {
     protected ArrayList<Food> queryMenu(String restaurant, int sortingOption) {
         //database set up
         SQLiteDatabase db = getReadableDatabase();
-        String restaurantDetails = restaurant + "Details";
-        restaurantDetails.replaceAll("\\s+","");
-        String userDetails = restaurant + "User";
 
         ArrayList<Food> ret = new ArrayList<Food>();
         String sortBy = "";
@@ -114,8 +111,9 @@ public class DatabaseHelper extends SQLiteAssetHelper {
                 sortBy = KEY_NAME;
         }
 
-        String query = "SELECT * FROM " + restaurantDetails + " NATURAL JOIN " + userDetails + " ORDER BY " + sortBy;
-        Cursor rawMenuDetails = db.rawQuery(query, new String[] {});
+        String query = "SELECT * FROM " + restaurant+ " ORDER BY " + sortBy;
+        Cursor rawMenu = db.rawQuery(query, new String[] {});
+        convertRawMenu(rawMenu);
 
         return ret;
     }

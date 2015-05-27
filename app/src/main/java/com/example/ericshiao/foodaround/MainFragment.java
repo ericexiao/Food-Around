@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Eric on 5/24/2015.
@@ -22,8 +21,6 @@ public class MainFragment extends Fragment {
     ListView list;
     RestaurantListAdapter adapter;
     DatabaseHelper dbHelper;
-    mainNavAdapter navAdapter;
-    List<Fragment> fragManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,7 +60,7 @@ public class MainFragment extends Fragment {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View item, int position, long rowId) {
-                Intent i = new Intent(getActivity(), MenuActivity.class);
+                Intent i = new Intent(getActivity(), RestaurantActivity.class);
                 Restaurant selected = (Restaurant) list.getItemAtPosition(position);
                 i.putExtra("selected", selected.getRawName());
 
