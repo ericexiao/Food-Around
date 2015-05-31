@@ -24,13 +24,13 @@ public class MenuFragment extends Fragment {
     DatabaseHelper dbHelper;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
+        super.onCreateView(inflater, container, savedInstance);
         View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
 
         sortID = getArguments().getInt("sortingOption");
         restaurantName = getArguments().getString("restaurant");
         dbHelper = new DatabaseHelper(getActivity());
 
-        courseTypes = getCourses();
         menu = getMenu();
         final ListView list = (ListView) rootView.findViewById(R.id.list);
         MenuListAdapter restaurantAdapter = new MenuListAdapter(getActivity(), menu);
@@ -38,19 +38,9 @@ public class MenuFragment extends Fragment {
         return rootView;
     }
 
-    private List<String> getCourses() {
-        ArrayList<String> courses = new ArrayList<String>();
-        courses.add("Appetizers");
-        courses.add("Entrees");
-        courses.add("Desserts");
-        courses.add("Beverages");
-        //courses.add("" + sortID);
-        return courses;
-    }
-
     private ArrayList<Food> getMenu() {
-        ArrayList<Food> a;
-        a = dbHelper.queryMenu(restaurantName, sortID);
-        return a;
+        ArrayList<Food> menuArrayList;
+        menuArrayList = dbHelper.queryMenu(restaurantName, sortID);
+        return menuArrayList;
     }
 }

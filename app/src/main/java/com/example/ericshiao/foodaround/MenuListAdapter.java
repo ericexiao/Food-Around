@@ -23,6 +23,21 @@ public class MenuListAdapter extends ArrayAdapter<Food> {
     private Context context;
     private ArrayList<Food> list;
 
+    Food food;
+    TextView foodName;
+    TextView foodDescription;
+    TextView foodPrice;
+    CheckBox foodEaten;
+    CheckBox thumbsUp;
+    CheckBox thumbsDown;
+
+    //constants for user adjustables
+    final int CONSTANT_UNEATEN = 0;
+    final int CONSTANT_EATEN = 1;
+    final int CONSTANT_THUMBSUP = 1;
+    final int CONSTANT_NO_RATING = 0;
+    final int CONSTANT_THUMBSDOWN = -1;
+
     public MenuListAdapter(Context context, ArrayList<Food> list) {
         super(context, 0, list);
         this.context = context;
@@ -32,30 +47,50 @@ public class MenuListAdapter extends ArrayAdapter<Food> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_restaurant, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_menu, parent, false);
         }
 
-        TextView foodName = (TextView) convertView.findViewById(R.id.foodName);
-        TextView foodDetails = (TextView) convertView.findViewById(R.id.foodDetail);
-        TextView foodPrice = (TextView) convertView.findViewById(R.id.foodPrice);
-        final CheckBox foodEaten = (CheckBox) convertView.findViewById(R.id.foodEaten);
-        final CheckBox thumbsUp = (CheckBox) convertView.findViewById(R.id.thumbsUp);
-        final CheckBox thumbsDown = (CheckBox) convertView.findViewById(R.id.thumbsDown);
-        final Food f = getItem(position);
-        foodName.setText(f.name);
-        foodDetails.setText(f.description);
-        foodPrice.setText(f.price);
+        viewSetup(convertView);
 
+        final Food food = getItem(position);
+
+        foodName.setText(food.name);
+        foodDescription.setText(food.description);
+        foodPrice.setText(food.price);
+        foodEatenSetup(food);
+        foodEatenListenerSetup(food);
+        foodRatingSetup(food);
+        foodRatingListenerSetup(food);
+
+        return convertView;
+    }
+
+    public void viewSetup(View convertView) {
+        foodName = (TextView) convertView.findViewById(R.id.foodName);
+        foodDescription = (TextView) convertView.findViewById(R.id.foodDetail);
+        foodPrice = (TextView) convertView.findViewById(R.id.foodPrice);
+        foodEaten = (CheckBox) convertView.findViewById(R.id.foodEaten);
+        thumbsUp = (CheckBox) convertView.findViewById(R.id.thumbsUp);
+        thumbsDown = (CheckBox) convertView.findViewById(R.id.thumbsDown);
+
+    }
+
+    public void foodEatenSetup(final Food f) {
+        if (f.eaten == 1) {
+            foodEaten.setChecked(true);
+        } else {
+            foodEaten.setChecked(false);
+        }
+    }
+
+    public void foodEatenListenerSetup(final Food f) {
         foodEaten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (f.eaten == 0) {
                     f.eaten = 1;
-                    //LayoutInflater popupInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    //PopupWindow popup = new PopupWindow(popupInflater.inflate(R.layout.eaten_popup, null));
                     Toast eatenMessage = Toast.makeText(context, f.name + " eaten!", Toast.LENGTH_SHORT);
                     eatenMessage.show();
-                    //popup.showAtLocation(foodEaten, Gravity.CENTER, 0, 0);
                     notifyDataSetChanged();
                 } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -79,14 +114,48 @@ public class MenuListAdapter extends ArrayAdapter<Food> {
                     });
                     builder.show();
                 }
-            }
-
-            ;
+            };
         });
-        return convertView;
     }
 
-    public void setImage(ImageView i) {
+    public void foodRatingSetup(Food f) {
+        if (f.rating == 1) {
+            thumbsUp.setChecked(true);
+            thumbsDown.setChecked(false);
+        } else if (f.rating == 0) {
+            thumbsDown.setChecked(true);
+            thumbsUp.setChecked(false);
+        } else {
+            thumbsUp.setChecked(false);
+            thumbsDown.setChecked(false);
+        }
+    }
 
+    public void foodRatingListenerSetup(final Food f) {
+        thumbsUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (f.rating == 1) {
+                    f.rating = -1;
+                    notifyDataSetChanged();
+                } else {
+                    f.rating = 1;
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
+        thumbsDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (f.rating == 0) {
+                    f.rating = -1;
+                    notifyDataSetChanged();
+                } else {
+                    f.rating = 0;
+                    notifyDataSetChanged();
+                }
+            }
+        });
     }
 }

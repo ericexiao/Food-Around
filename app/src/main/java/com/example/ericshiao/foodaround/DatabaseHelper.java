@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -90,10 +91,10 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 
     //consider doing multiple queries for different course types? allows to sort by different things more easily
     protected ArrayList<Food> queryMenu(String restaurant, int sortingOption) {
-        //database set up
+        //get instanc eof the database to read off of
         SQLiteDatabase db = getReadableDatabase();
 
-        ArrayList<Food> ret = new ArrayList<Food>();
+        ArrayList<Food> menuArrayList;
         String sortBy = "";
 
         switch (sortingOption) {
@@ -113,29 +114,33 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 
         String query = "SELECT * FROM " + restaurant+ " ORDER BY " + sortBy;
         Cursor rawMenu = db.rawQuery(query, new String[] {});
-        convertRawMenu(rawMenu);
+        menuArrayList = convertRawMenu(rawMenu);
 
-        return ret;
+        return menuArrayList;
     }
 
     protected ArrayList<Food> convertRawMenu(Cursor rawMenu) {
-        ArrayList<Food> menu = new ArrayList<>();
+        ArrayList<Food> menuArrayList = new ArrayList<>();
+        int counter = 0;
         if (rawMenu.moveToFirst()) {
             do  {
+                counter++;
                 //insert cursor data into restaurant objects
+                int id = rawMenu.getInt(0);
                 String name = rawMenu.getString(1);
                 String courseType = rawMenu.getString(2);
                 int speciality = rawMenu.getInt(3);
                 String price = rawMenu.getString(4);
                 String description = rawMenu.getString(5);
-                int eaten = rawMenu.getInt(6);
-                int rating = rawMenu.getInt(7);
-                Food insert = new Food(name, courseType, speciality, rating, eaten, price, description);
+                int rating = rawMenu.getInt(6);
+                int eaten = rawMenu.getInt(7);
+                Food insert = new Food(id,      name, courseType, speciality, rating, eaten, price, description);
                 //insert into arraylist
-                menu.add(insert);
+                menuArrayList.add(insert);
+                Log.d("Entries so far?", Integer.toString(counter));
             } while (rawMenu.moveToNext());
         }
-        return menu;
+        return menuArrayList;
     }
 }
 

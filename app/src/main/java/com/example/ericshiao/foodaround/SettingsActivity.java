@@ -1,5 +1,6 @@
 package com.example.ericshiao.foodaround;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
  */
 public class SettingsActivity extends ActionBarActivity {
 
+    FragmentManager fm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +21,8 @@ public class SettingsActivity extends ActionBarActivity {
         setTitle("Settings");
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        fm = getFragmentManager();
+        fm.beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
     }
 
     @Override
