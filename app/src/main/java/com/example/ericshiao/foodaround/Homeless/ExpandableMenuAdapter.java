@@ -1,4 +1,4 @@
-package com.example.ericshiao.foodaround;
+package com.example.ericshiao.foodaround.Homeless;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,6 +13,9 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ericshiao.foodaround.Food;
+import com.example.ericshiao.foodaround.R;
+
 import java.util.List;
 import java.util.Map;
 
@@ -23,9 +26,9 @@ import java.util.Map;
 /*
 Expandable list adapter for the menu in the RestuarantActivity
  */
-public class ExpandableMenuAdapter extends BaseExpandableListAdapter {
+public abstract class ExpandableMenuAdapter extends BaseExpandableListAdapter {
 
-    private Activity context;
+ /*   private Activity context;
     private Map<String, List<Food>> food;
     private List<String> courses;
 
@@ -190,5 +193,5 @@ public class ExpandableMenuAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
-
+*/
 }

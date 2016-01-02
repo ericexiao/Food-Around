@@ -1,4 +1,4 @@
-package com.example.ericshiao.foodaround;
+package com.example.ericshiao.foodaround.MainNavFragments;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,6 +10,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.ericshiao.foodaround.Managers.MySQLiteManager;
+import com.example.ericshiao.foodaround.R;
+import com.example.ericshiao.foodaround.Restaurant;
+import com.example.ericshiao.foodaround.RestaurantActivity;
+import com.example.ericshiao.foodaround.ListAdapters.RestaurantAdapter;
+import com.example.ericshiao.foodaround.NavAdapters.MainAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,18 +27,18 @@ public class MainFragment extends Fragment {
 
     public static final String RESTAURANT_DETAIL_KEY = "restaurant";
     ListView list;
-    RestaurantListAdapter adapter;
-    DatabaseHelper dbHelper;
-    mainNavAdapter navAdapter;
+    RestaurantAdapter adapter;
+    MySQLiteManager dbHelper;
+    MainAdapter navAdapter;
     List<Fragment> fragManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
 
-        dbHelper = new DatabaseHelper(getActivity());
+        dbHelper = new MySQLiteManager(getActivity());
         list = (ListView) root.findViewById(R.id.restaurants);
-        adapter = new RestaurantListAdapter(getActivity(), getDirectory());
+        adapter = new RestaurantAdapter(getActivity(), getDirectory());
         list.setAdapter(adapter);
 
         goToSelectedRestaurant();

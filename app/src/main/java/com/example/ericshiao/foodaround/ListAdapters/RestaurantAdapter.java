@@ -1,4 +1,4 @@
-package com.example.ericshiao.foodaround;
+package com.example.ericshiao.foodaround.ListAdapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,14 +8,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ericshiao.foodaround.R;
+import com.example.ericshiao.foodaround.Restaurant;
+
 import java.util.ArrayList;
 
 /**
  * Created by Eric on 1/2/2015.
  */
-public class RestaurantListAdapter extends ArrayAdapter<Restaurant> {
+public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
-    public RestaurantListAdapter(Context context, ArrayList<Restaurant> list) {
+    public RestaurantAdapter(Context context, ArrayList<Restaurant> list) {
         super(context, 0, list);
     }
 

@@ -1,4 +1,4 @@
-package com.example.ericshiao.foodaround;
+package com.example.ericshiao.foodaround.RestaurantFragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+
+import com.example.ericshiao.foodaround.Managers.MySQLiteManager;
+import com.example.ericshiao.foodaround.Homeless.ExpandableMenuAdapter;
+import com.example.ericshiao.foodaround.Food;
+import com.example.ericshiao.foodaround.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,14 +26,14 @@ public class LocationFragment extends Fragment {
     List<String> childList;
     int sortID;
     public String restaurantName;
-    DatabaseHelper dbHelper;
+    MySQLiteManager dbHelper;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
         View rootView = inflater.inflate(R.layout.fragment_section_menu, container, false);
 
         sortID = getArguments().getInt("sortingOption");
         restaurantName = getArguments().getString("restaurant");
-        dbHelper = new DatabaseHelper(getActivity());
+        dbHelper = new MySQLiteManager(getActivity());
         courseTypes = getCourses();
         final ExpandableListView list = (ExpandableListView) rootView.findViewById(R.id.list);
         ExpandableMenuAdapter restaurantAdapter = new ExpandableMenuAdapter(getActivity(), courseTypes, menuChildren);

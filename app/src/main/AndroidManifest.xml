@@ -44,7 +44,7 @@
             />
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".Search.SettingsActivity"
             android:label="Settings"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"

@@ -1,4 +1,4 @@
-package com.example.ericshiao.foodaround;
+package com.example.ericshiao.foodaround.NavAdapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,10 +9,10 @@ import java.util.List;
 /**
  * Created by Eric on 3/5/2015.
  */
-public class mainNavAdapter extends FragmentPagerAdapter {
+public class rNavAdapter extends FragmentPagerAdapter {
     List<Fragment> fragList;
 
-    public mainNavAdapter(FragmentManager fm, List<Fragment> fragments) {
+    public rNavAdapter(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
         fragList = fragments;
     }
@@ -31,15 +31,11 @@ public class mainNavAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "The Corner";
+                return "Info";
             case 1:
-                return "Downtown";
+                return "Menu";
             case 2:
-                return "Barracks";
-            case 3:
-                return "JPA";
-            case 4:
-                return "Other";
+               return "Comments";
             default:
                 break;
         }

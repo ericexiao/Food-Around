@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
+import com.example.ericshiao.foodaround.Homeless.ExpandableMenuAdapter;
+import com.example.ericshiao.foodaround.Managers.MySQLiteManager;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,14 +24,14 @@ public class MenuSectionFragment extends Fragment {
     List<String> childList;
     int sortID;
     public String restaurantName;
-    DatabaseHelper dbHelper;
+    MySQLiteManager dbHelper;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
         View rootView = inflater.inflate(R.layout.fragment_section_menu, container, false);
 
         sortID = getArguments().getInt("sortingOption");
         restaurantName = getArguments().getString("restaurant");
-        dbHelper = new DatabaseHelper(getActivity());
+        dbHelper = new MySQLiteManager(getActivity());
 
         courseTypes = getCourses();
         menuChildren = getMenu();

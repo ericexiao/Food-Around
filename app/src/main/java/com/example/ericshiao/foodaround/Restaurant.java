@@ -96,7 +96,7 @@ public class Restaurant {
         this.image = image;
     }
 
-    protected String getRawName() {
+    public String getRawName() {
         String rawName = name.toLowerCase();
         rawName.replaceAll("\\s+","");
         return rawName;

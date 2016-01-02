@@ -1,4 +1,4 @@
-package com.example.ericshiao.foodaround;
+package com.example.ericshiao.foodaround.Search;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,6 +14,12 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import android.widget.ListView;
 
+import com.example.ericshiao.foodaround.ListAdapters.RestaurantAdapter;
+import com.example.ericshiao.foodaround.Managers.MySQLiteManager;
+import com.example.ericshiao.foodaround.R;
+import com.example.ericshiao.foodaround.Restaurant;
+import com.example.ericshiao.foodaround.RestaurantActivity;
+
 import java.util.ArrayList;
 
 
@@ -23,8 +29,8 @@ public class SearchActivity extends ActionBarActivity {
     ListView list;
     int selectedItem;
     //ArrayList<Restaurant> directory;
-    RestaurantListAdapter adapter;
-    DatabaseHelper dbHelper;
+    RestaurantAdapter adapter;
+    MySQLiteManager dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +40,11 @@ public class SearchActivity extends ActionBarActivity {
         selectedItem = 0;
         setTitle("Search Results");
 
-        dbHelper = new DatabaseHelper(this);
+        dbHelper = new MySQLiteManager(this);
 
 
         list = (ListView) findViewById(R.id.restaurants);
-        adapter = new RestaurantListAdapter(this, getDirectory());
+        adapter = new RestaurantAdapter(this, getDirectory());
         list.setAdapter(adapter);
 
         onRestaurantClick();

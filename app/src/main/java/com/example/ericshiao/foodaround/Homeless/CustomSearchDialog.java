@@ -1,4 +1,4 @@
-package com.example.ericshiao.foodaround;
+package com.example.ericshiao.foodaround.Homeless;
 
 import android.app.Activity;
 import android.app.Dialog;

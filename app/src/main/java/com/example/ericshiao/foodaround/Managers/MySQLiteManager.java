@@ -1,4 +1,4 @@
-package com.example.ericshiao.foodaround;
+package com.example.ericshiao.foodaround.Managers;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
+import com.example.ericshiao.foodaround.Food;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Created by Eric on 3/8/2015.
  */
-public class DatabaseHelper extends SQLiteAssetHelper {
+public class MySQLiteManager extends SQLiteAssetHelper {
     private static final String DB_NAME = "foodAroundGrounds.db";
     private static final int DATABASE_VERSION = 1;
 
@@ -39,11 +40,11 @@ public class DatabaseHelper extends SQLiteAssetHelper {
      *
      * @param context
      */
-    public DatabaseHelper(Context context) {
+    public MySQLiteManager(Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);
     }
 
-    protected Cursor getRestaurantDirectory(int sortingOption) {
+    public Cursor getRestaurantDirectory(int sortingOption) {
         String sortBy;
         //Log.i("Here", "Attempting to get Directory");
         switch (sortingOption) {
@@ -73,7 +74,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         return rawDirectory;
     }
 
-    protected Cursor getRestaurantSearch(String name, String location, String priceAverageBottom, String priceAverageTop) {
+    public Cursor getRestaurantSearch(String name, String location, String priceAverageBottom, String priceAverageTop) {
         Cursor results;
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder q = new SQLiteQueryBuilder();
@@ -89,7 +90,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
     }
 
     //consider doing multiple queries for different course types? allows to sort by different things more easily
-    protected ArrayList<Food> getMenu(String restaurant, int sortingOption) {
+    public ArrayList<Food> getMenu(String restaurant, int sortingOption) {
         SQLiteDatabase db = getReadableDatabase();
         String restaurantDetails = restaurant + "Details";
         restaurantDetails.replaceAll("\\s+","");
@@ -119,7 +120,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         return ret;
     }
 
-    protected ArrayList<Food> convertRawMenu(Cursor rawMenu) {
+    public ArrayList<Food> convertRawMenu(Cursor rawMenu) {
         ArrayList<Food> menu = new ArrayList<>();
         if (rawMenu.moveToFirst()) {
             do  {

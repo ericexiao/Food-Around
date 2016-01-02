@@ -11,6 +11,10 @@ import android.support.v7.internal.view.menu.ActionMenuItemView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.ericshiao.foodaround.NavAdapters.rNavAdapter;
+import com.example.ericshiao.foodaround.RestaurantFragments.InfoSectionFragment;
+import com.example.ericshiao.foodaround.Search.SettingsActivity;
+
 import java.util.ArrayList;
 
 import java.util.List;
@@ -31,7 +35,6 @@ public class RestaurantActivity extends ActionBarActivity {
     ViewPager rNavPager;
     rNavAdapter rAdapter;
     int selectedItem;
-    //DatabaseHelper dbHelper;
     String restaurantName;
 
     @Override
@@ -46,7 +49,6 @@ public class RestaurantActivity extends ActionBarActivity {
         setTitle(restaurantName);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        //dbHelper = new DatabaseHelper(this);
         MenuSectionFragment menuFragment = new MenuSectionFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("sortingOption", selectedItem);

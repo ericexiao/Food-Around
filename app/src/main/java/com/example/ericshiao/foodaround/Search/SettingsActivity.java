@@ -1,9 +1,11 @@
-package com.example.ericshiao.foodaround;
+package com.example.ericshiao.foodaround.Search;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.ericshiao.foodaround.R;
 
 /**
  * Created by Eric on 3/17/2015.

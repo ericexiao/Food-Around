@@ -1,4 +1,4 @@
-package com.example.ericshiao.foodaround;
+package com.example.ericshiao.foodaround.Search;
 
 import android.support.v4.app.Fragment;
 
