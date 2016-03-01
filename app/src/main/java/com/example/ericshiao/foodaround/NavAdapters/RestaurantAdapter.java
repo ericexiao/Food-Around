@@ -9,33 +9,37 @@ import java.util.List;
 /**
  * Created by Eric on 3/5/2015.
  */
-public class rNavAdapter extends FragmentPagerAdapter {
-    List<Fragment> fragList;
+public class RestaurantAdapter extends FragmentPagerAdapter {
+    List<Fragment> fragmentList;
 
-    public rNavAdapter(FragmentManager fm, List<Fragment> fragments) {
+    private final String FRAGMENT_TITLE_1 = "Info";
+    private final String FRAGMENT_TITLE_2 = "Menu";
+    private final String FRAGMENT_TITLE_3 = "Comments";
+
+    public RestaurantAdapter(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
-        fragList = fragments;
+        fragmentList = fragments;
     }
 
     @Override
     public Fragment getItem(int i) {
-        return fragList.get(i);
+        return fragmentList.get(i);
     }
 
     @Override
     public int getCount() {
-        return fragList.size();
+        return fragmentList.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Info";
+                return FRAGMENT_TITLE_1;
             case 1:
-                return "Menu";
+                return FRAGMENT_TITLE_2;
             case 2:
-               return "Comments";
+                return FRAGMENT_TITLE_3;
             default:
                 break;
         }

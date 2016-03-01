@@ -21,7 +21,7 @@ import java.util.Map;
  * Created by Eric on 3/5/2015.
  */
 public class LocationFragment extends Fragment {
-    List<String> courseTypes;
+ /*   List<String> courseTypes;
     Map<String, List<Food>> menuChildren = new HashMap<String, List<Food>>();
     List<String> childList;
     int sortID;
@@ -56,5 +56,5 @@ public class LocationFragment extends Fragment {
         Map<String, List<Food>> m = new HashMap<String, List<Food>>();
         dbHelper.getMenu(restaurantName, sortID);
         return m;
-    }
+    } */
 }

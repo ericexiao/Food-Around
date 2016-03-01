@@ -96,7 +96,6 @@ public class MySQLiteManager extends SQLiteAssetHelper {
         restaurantDetails.replaceAll("\\s+","");
         String userDetails = restaurant + "User";
 
-        ArrayList<Food> ret = new ArrayList<Food>();
         String sortBy = "";
 
         switch (sortingOption) {
@@ -116,11 +115,13 @@ public class MySQLiteManager extends SQLiteAssetHelper {
 
         String query = "SELECT * FROM " + restaurantDetails + " NATURAL JOIN " + userDetails + " ORDER BY " + sortBy;
         Cursor rawMenuDetails = db.rawQuery(query, new String[] {});
-
-        return ret;
+        return convertRawMenu(rawMenuDetails);
     }
 
-    public ArrayList<Food> convertRawMenu(Cursor rawMenu) {
+    /*
+     * Helper method for converting Cursors from the SQLite db into an ArrayList for the Adapter
+     */
+    private ArrayList<Food> convertRawMenu(Cursor rawMenu) {
         ArrayList<Food> menu = new ArrayList<>();
         if (rawMenu.moveToFirst()) {
             do  {

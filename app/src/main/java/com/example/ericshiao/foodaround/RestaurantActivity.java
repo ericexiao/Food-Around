@@ -11,8 +11,9 @@ import android.support.v7.internal.view.menu.ActionMenuItemView;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.ericshiao.foodaround.NavAdapters.rNavAdapter;
+import com.example.ericshiao.foodaround.NavAdapters.RestaurantAdapter;
 import com.example.ericshiao.foodaround.RestaurantFragments.InfoSectionFragment;
+import com.example.ericshiao.foodaround.RestaurantFragments.MenuSectionFragment;
 import com.example.ericshiao.foodaround.Search.SettingsActivity;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class RestaurantActivity extends ActionBarActivity {
 
     List<Fragment> fragManager;
     ViewPager rNavPager;
-    rNavAdapter rAdapter;
+    RestaurantAdapter restaurantAdapter;
     int selectedItem;
     String restaurantName;
 
@@ -61,8 +62,8 @@ public class RestaurantActivity extends ActionBarActivity {
 
 
         rNavPager = (ViewPager) findViewById(R.id.rPager);
-        rAdapter = new rNavAdapter(getSupportFragmentManager(), fragManager);
-        rNavPager.setAdapter(rAdapter);
+        restaurantAdapter = new RestaurantAdapter(getSupportFragmentManager(), fragManager);
+        rNavPager.setAdapter(restaurantAdapter);
         rNavPager.setCurrentItem(1);
 
 

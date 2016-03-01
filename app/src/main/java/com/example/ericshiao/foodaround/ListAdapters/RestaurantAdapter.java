@@ -36,9 +36,9 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         ImageView open = (ImageView) convertView.findViewById(R.id.open);
         ImageView picture = (ImageView) convertView.findViewById(R.id.picture);
 
-        name.setText(r.name);
-        address.setText(r.address);
-        genLocation.setText(" - " + r.genLocation);
+        name.setText(r.getName());
+        address.setText(r.getAddress());
+        //genLocation.setText(" - " + r.getGeneralLocation());
 
         return convertView;
     }

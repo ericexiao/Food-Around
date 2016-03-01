@@ -8,13 +8,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/switchInfoButton"/> -->
 
-    <ExpandableListView
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/list"
         android:layout_gravity="center_horizontal"
         android:paddingTop="15dp"
-        android:childDivider="#F0F0F0"
-        />
+        android:childDivider="#F0F0F0" />
 
 </RelativeLayout>

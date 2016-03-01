@@ -18,7 +18,7 @@ import com.example.ericshiao.foodaround.Search.SettingsActivity;
 public class MainActivity extends ActionBarActivity {
 
     public static final String RESTAURANT_DETAIL_KEY = "restaurant";
-    FragmentManager fm;
+    FragmentManager fragmentManager;
     MainFragment mainFragment;
     ListView list;
 
@@ -29,38 +29,23 @@ public class MainActivity extends ActionBarActivity {
 
         setTitle("Food Around Grounds");
 
-        fm = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         mainFragment = new MainFragment();
-        fm.beginTransaction().replace(android.R.id.content, mainFragment).commit();
+        fragmentManager.beginTransaction().replace(android.R.id.content, mainFragment).commit();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);//Inflate the menu; this adds items to the action bar if it is present.
         return true;
     }
 
+    /* Handle action bar item clicks here. The action bar will
+     * automatically handle clicks on the Home/Up button, so long
+     * as you specify a parent activity in AndroidManifest.xml.
+     * ActionBar actionBar = getSupportActionBar(); */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        //ActionBar actionBar = getSupportActionBar();
         final ActionMenuItemView restaurantSort = (ActionMenuItemView) findViewById(R.id.action_restaurantSort);
         int id = item.getItemId();
 

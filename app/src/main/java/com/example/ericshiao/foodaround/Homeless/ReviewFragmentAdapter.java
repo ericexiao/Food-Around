@@ -1,4 +1,4 @@
-package com.example.ericshiao.foodaround;
+package com.example.ericshiao.foodaround.Homeless;
 
 /**
  * Created by Eric on 1/22/2015.

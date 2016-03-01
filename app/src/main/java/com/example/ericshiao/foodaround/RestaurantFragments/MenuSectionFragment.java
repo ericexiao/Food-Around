@@ -1,4 +1,4 @@
-package com.example.ericshiao.foodaround;
+package com.example.ericshiao.foodaround.RestaurantFragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,9 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.ListView;
 
+import com.example.ericshiao.foodaround.Food;
 import com.example.ericshiao.foodaround.Homeless.ExpandableMenuAdapter;
+import com.example.ericshiao.foodaround.ListAdapters.MenuAdapter;
 import com.example.ericshiao.foodaround.Managers.MySQLiteManager;
+import com.example.ericshiao.foodaround.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,28 +24,30 @@ import java.util.Map;
  */
 public class MenuSectionFragment extends Fragment {
     List<String> courseTypes;
-    Map<String, List<Food>> menuChildren = new HashMap<String, List<Food>>();
-    List<String> childList;
     int sortID;
     public String restaurantName;
-    MySQLiteManager dbHelper;
+    MySQLiteManager mySQLiteManager;
+    MenuAdapter menuAdapter;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
         View rootView = inflater.inflate(R.layout.fragment_section_menu, container, false);
 
+        ListView listView = (ListView) rootView.findViewById(R.id.list);
+
         sortID = getArguments().getInt("sortingOption");
         restaurantName = getArguments().getString("restaurant");
-        dbHelper = new MySQLiteManager(getActivity());
+        mySQLiteManager = new MySQLiteManager(getActivity());
 
         courseTypes = getCourses();
-        menuChildren = getMenu();
-        final ExpandableListView list = (ExpandableListView) rootView.findViewById(R.id.list);
-        ExpandableMenuAdapter restaurantAdapter = new ExpandableMenuAdapter(getActivity(), courseTypes, menuChildren);
-        list.setAdapter(restaurantAdapter);
-        list.setGroupIndicator(null);
+        menuAdapter = new MenuAdapter(getActivity(), getMenu());
+        listView.setAdapter(menuAdapter);
+
         return rootView;
     }
 
+    /*
+     * Gets the course label as per restaurant
+     */
     private List<String> getCourses() {
         ArrayList<String> courses = new ArrayList<String>();
         courses.add("Appetizers");
@@ -52,10 +58,8 @@ public class MenuSectionFragment extends Fragment {
         return courses;
     }
 
-    private Map<String, List<Food>> getMenu() {
-        Map<String, List<Food>> m = new HashMap<String, List<Food>>();
-        dbHelper.getMenu(restaurantName, sortID);
-        return m;
+    private ArrayList<Food> getMenu() {
+        return mySQLiteManager.getMenu(restaurantName, sortID);
     }
 
     /*private Map<String, List<Food>> populateMenu(List<String> courses) {
