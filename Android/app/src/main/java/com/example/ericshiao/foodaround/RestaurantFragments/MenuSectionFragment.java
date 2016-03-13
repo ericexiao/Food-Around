@@ -36,7 +36,6 @@ public class MenuSectionFragment extends Fragment {
 
         sortID = getArguments().getInt("sortingOption");
         restaurantName = getArguments().getString("restaurant");
-        mySQLiteManager = new MySQLiteManager(getActivity());
 
         courseTypes = getCourses();
         menuAdapter = new MenuAdapter(getActivity(), getMenu());
@@ -46,7 +45,9 @@ public class MenuSectionFragment extends Fragment {
     }
 
     /*
-     * Gets the course label as per restaurant
+     * Gets the courses as per restaurant from the SQL table
+     *
+     * TODO: Change from hardcoding to pulling from SQLite
      */
     private List<String> getCourses() {
         ArrayList<String> courses = new ArrayList<String>();
@@ -58,10 +59,14 @@ public class MenuSectionFragment extends Fragment {
         return courses;
     }
 
+    /*
+     * Gets the manager
+     */
     private ArrayList<Food> getMenu() {
         return mySQLiteManager.getMenu(restaurantName, sortID);
     }
 
+    //Test method, archaic code with hard coded menu items
     /*private Map<String, List<Food>> populateMenu(List<String> courses) {
         Map<String, List<Food>> m = new HashMap<String, List<Food>>();
 

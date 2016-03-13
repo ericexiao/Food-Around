@@ -18,6 +18,7 @@ public class MySQLiteManager extends SQLiteAssetHelper {
     private static final String DB_NAME = "foodAroundGrounds.db";
     private static final int DATABASE_VERSION = 1;
 
+    //Table columns
     private final String KEY_ID = "_id";
     private final String KEY_NAME = "name";
     private final String KEY_ADDRESS = "address";
@@ -44,9 +45,11 @@ public class MySQLiteManager extends SQLiteAssetHelper {
         super(context, DB_NAME, null, DATABASE_VERSION);
     }
 
+    /*
+     * Returns the list of all of the restaurants in the SQL database
+     */
     public Cursor getRestaurantDirectory(int sortingOption) {
-        String sortBy;
-        //Log.i("Here", "Attempting to get Directory");
+        String sortBy; //Variable for the "SORTBY" function in SQL query
         switch (sortingOption) {
             case 0:
                 sortBy = KEY_NAME;
@@ -57,10 +60,11 @@ public class MySQLiteManager extends SQLiteAssetHelper {
             default:
                 sortBy = KEY_NAME;
         }
+
         SQLiteDatabase db = getReadableDatabase();
-        SQLiteQueryBuilder q = new SQLiteQueryBuilder();
-        q.setTables(TABLE_RESTAURANTS);
-        Cursor rawDirectory = q.query(db,
+        SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
+        queryBuilder.setTables(TABLE_RESTAURANTS);
+        Cursor rawDirectory = queryBuilder.query(db,
                 new String[]{KEY_ID, KEY_NAME, KEY_ADDRESS, KEY_GEN_LOCATION, KEY_TIMES}, //table columns
                 null, //WHERE statement
                 null, //? fillers
@@ -68,12 +72,18 @@ public class MySQLiteManager extends SQLiteAssetHelper {
                 null, //having
                 sortBy, //order By
                 null); //limit
+
         if (rawDirectory != null) {
             rawDirectory.moveToFirst();
         }
         return rawDirectory;
     }
 
+    /*
+     * Search the database to get a return query
+     *
+     * TODO: Do search
+     */
     public Cursor getRestaurantSearch(String name, String location, String priceAverageBottom, String priceAverageTop) {
         Cursor results;
         SQLiteDatabase db = getReadableDatabase();
@@ -119,7 +129,7 @@ public class MySQLiteManager extends SQLiteAssetHelper {
     }
 
     /*
-     * Helper method for converting Cursors from the SQLite db into an ArrayList for the Adapter
+     * Helper method for converting Cursors from the SQLite db into an ArrayList for the Adapters
      */
     private ArrayList<Food> convertRawMenu(Cursor rawMenu) {
         ArrayList<Food> menu = new ArrayList<>();
