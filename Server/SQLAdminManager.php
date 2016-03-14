@@ -1,11 +1,10 @@
 <?php
-
+	require "BaseSQLManager.php"
+	
 	//class that manages the storing and retrieval of data into the MySQL database for admin purposes. 
-	class SQLAdminManager extends SQLManager {
+	class SQLAdminManager extends BaseSQLManager {
 		private final $password = " ";
 		private $valid = false;
-		private $db; 
-
 		function __construct($input) {
 			if ($input === $password) {
 				$valid = true;

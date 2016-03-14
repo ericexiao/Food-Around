@@ -67,10 +67,7 @@
 			}
 		}
 	}
-?> 
-
-<?php
-	session_unset();
+/*	session_unset();
 	$match =  false;
 	if (isset($_POST["user"]) and isset($_POST["password"])) {
 		if ($_POST["user"] != null and $_POST["password"] != null) {
@@ -104,5 +101,5 @@
 		$db = null;
 	} else { 
 		header("Location: index.html");
-	}
+	} */
 ?>
