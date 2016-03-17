@@ -2,7 +2,7 @@
 	require "SQLAdminManager.php";
 	require "FileExtractor.php";
 
-	class SetupManager {
+	public class SetupManager {
 		private $filename; //constant holding the file needed for setup
 		private $SQLManager;
 
@@ -26,7 +26,7 @@
 		}
 
 		//wrapper function for initial seed setup. Probably can use for bulk add-ons to the server as well  
-		public function originSetup() {
+		public function completeSetup() {
 			$restaurantName, $restaurantInfoFile, $restaurantMenuFile;
 			$infoDataArray, $menuDataArray;
 
@@ -37,7 +37,7 @@
 					while ($line = fgets($file)) {
 						if ($this -> extractRestaurant($restaurantName, $restaurantInfoFile, $restaurantMenuFile, $line)) {
 							if ($this -> populateDataArrays()) {
-								$insertResult = $this -> insertRestaurantData($restaurantName, $infoDataArray, $menuDataArray);
+								$insertResult = $this -> createRestaurant($restaurantName, $infoDataArray, $menuDataArray);
 								if ($result[1] === false) { //if the info failed to be inserted
 									echo($restaurantName . " failed to convert properly (" . $restaurantInfoFile . ") <br>"));
 									dumpArray($infoDataArray);
@@ -87,11 +87,5 @@
 			print_r($array);
 			echo ("/pre>");
 		}
-	
-		//leftover code 
-		/*		
-			
-		function
-		*/
 	}
 ?>
