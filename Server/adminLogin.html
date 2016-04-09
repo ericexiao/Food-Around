@@ -1,8 +1,9 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> <!--bootstrap-->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> <!--jquery-->
-		<script type="text/javascript" src="authenticator.js"> </script> <!--authentication js -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> <!--jquery-->	
+		<script type="text/javascript" src="loginScripts/login.js"> </script> 
+		<script type="text/javascript" src="loginScripts/adminLogin.js"> </script> 
 	</head>
 
 	<body>
@@ -14,15 +15,20 @@
 		<div id="title">
 		</div> 
 		
-		<div class="input-group align-center" id="admin-login">
-			<input type="text" class="form-control" placeholder="Username">
-			<input type="password" class="form-control" placeholder="Password">
-			<button class="btn btn-default" type="button"> Log In </button>
-		</div>
+		<div id="main" class="pagination-centered"> 
+			<div id="login-form" class="input-group">
+				<input id="login-username" type="text" class="form-control" placeholder="Username">
+				<input id="login-password" type="password" class="form-control" placeholder="Password">
+				<button id="login-button" class="btn btn-default" type="button"> Log In </button>
+				<button id="show-register-button" class="btn btn-default" type="button"> Need an account? </button>
 
-		<div class="hidden input-group align-center" id="admin-login">
-			<input type="text" class="form-control" placeholder="Username">
-			<input type="password" class="form-control" placeholder="Password">
-			<button class="btn btn-default" type="button"> Register </button>
+			</div>
+			
+			<div id="register-form" class="hidden input-group">
+				<input id="register-username" type="text" class="form-control" placeholder="Username">
+				<input id="register-password" type="password" class="form-control" placeholder="Password">
+				<button id="register-button" class="btn btn-default" type="button"> Register </button>
+				<button id="show-login-button" class="btn btn-default" type="button"> Already have an account? </button>
+			</div>
 		</div>
 </html>

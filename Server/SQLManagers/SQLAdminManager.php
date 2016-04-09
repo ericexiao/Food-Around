@@ -3,11 +3,9 @@
 	
 	//class that manages the storing and retrieval of data into the MySQL database for admin purposes. 
 	public class SQLAdminManager extends BaseSQLManager {
-		private final $password = " ";
-		private $valid = false;
 
 		public function __construct() {
-			$valid = true;
+
 		}
 
 		public function createRestaurant($restaurantName, $menuArray, $infoArray) {
@@ -46,7 +44,8 @@
 					Courses varchar(255),
 					PRIMARY KEY (Name)
 				)";
-			$result = mysqli_query()
+			$result = mysqli_query($query);
+			return $result;
 		}
 
 		//creates the query for creating a menu table in the database

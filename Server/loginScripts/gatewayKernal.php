@@ -25,7 +25,7 @@
 		public function authenticate() {
 			$success = false;
 			$fail_message;
-			$db_link=mysqli_connect("ericshiao.me", "ericshiao_foodAround","","ericshiao_authOnly"); //TODO: use file extraction for username password 
+			$db_link=mysqli_connect("ericshiao.me", "ericshiao_foodAround","password","ericineo"); //TODO: use file extraction for username password 
 			if (!$authencation_link) {
 				$fail_message = $connection_failed_message;
 			} else {
@@ -44,7 +44,7 @@
 			if ($success) {
 				echo "Login Successful";
 			} else {
-				echo $fail_message;
+				echo json_encode($fail_message);
 			}
 			exit; 
 		}
